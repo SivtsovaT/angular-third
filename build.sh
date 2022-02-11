@@ -9,4 +9,5 @@ fi
 
 npm run build
 
+
 git checkout -- src/environments/environment.prod.ts
