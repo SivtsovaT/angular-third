@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  versionName: '1.0.0',
+  versionName: '1.0.1',
   firebase: {
     apiKey: "AIzaSyALnW4unm24srzXZYYwqO7So2DQsfoDvkk",
     authDomain: "angular-third.firebaseapp.com",
