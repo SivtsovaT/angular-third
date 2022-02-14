@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Auth} from "@angular/fire/auth";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-splash-page',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SplashPageComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private auth: Auth, private router: Router) {
   }
 
+
+
+  ngOnInit(): void {
+    if (this.auth.currentUser != null) {
+      this.router.navigate(['home'])
+    } else {
+      this.router.navigate(['index'])
+    }
+  }
 }
