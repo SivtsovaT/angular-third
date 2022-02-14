@@ -1,1 +1,4 @@
-<p>sign-up-page works!</p>
+<p><input type="text" placeholder="Email" [(ngModel)]="credentials.email"/></p>
+<p><input type="text" placeholder="Password" [(ngModel)]="credentials.password"/></p>
+<p><button (click)="handleSignUp()">Sign Up</button></p>
+<p *ngIf="credentials.errorMessage">{{credentials.errorMessage}}</p>
