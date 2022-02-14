@@ -1,4 +1,7 @@
 <p><input type="text" placeholder="Email" [(ngModel)]="credentials.email"/></p>
 <p><input type="text" placeholder="Password" [(ngModel)]="credentials.password"/></p>
+<p><input type="text" placeholder="Username" [(ngModel)]="credentials.username"/></p>
+<p><input type="text" placeholder="Sex" [(ngModel)]="credentials.sex"/></p>
+<p><input type="text" placeholder="Birthday" [(ngModel)]="credentials.birthday"/></p>
 <p><button (click)="handleSignUp()">Sign Up</button></p>
 <p *ngIf="credentials.errorMessage">{{credentials.errorMessage}}</p>
