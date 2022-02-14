@@ -5,6 +5,7 @@ import {getAuth, provideAuth} from '@angular/fire/auth';
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../environments/environment";
+import {FormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './features/onboarding/home-page/home-page.component';
@@ -26,6 +27,7 @@ import { SplashPageComponent } from './features/onboarding/splash-page/splash-pa
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: 'signUpEmail', component: SignUpPageComponent},
       {path: 'signInEmail', component: SignInPageComponent},
