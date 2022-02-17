@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -e
+
 PATCH_NUMBER=${CI_PATCH_NUMBER:-1}
 
 if [[ "$OSTYPE" = "darwin"* ]]; then
