@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Auth, createUserWithEmailAndPassword} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import firebase from "firebase/compat";
@@ -14,7 +14,7 @@ export class SignUpPageComponent implements OnInit {
 
   credentials: SignUpCredentials = new SignUpCredentials();
 
-  constructor(private auth: Auth, private router: Router, private firestore: Firestore) {
+  constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,7 +22,6 @@ export class SignUpPageComponent implements OnInit {
 
   async handleSignUp() {
     try {
-      await createUserWithEmailAndPassword(this.auth, this.credentials.email, this.credentials.password);
       const user = await createUserWithEmailAndPassword(this.auth,
         this.credentials.email, this.credentials.password);
       const userId = user.user.uid;
@@ -38,14 +37,14 @@ export class SignUpPageComponent implements OnInit {
       this.credentials.errorMessage = error.message;
     }
   }
-}
 
+}
 
 class SignUpCredentials {
   errorMessage?: string
 
   private _email?: string;
-  private _password?: string
+  private _password?: string;
   username?: string;
   sex?: string;
   birthday?: string;
