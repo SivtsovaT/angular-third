@@ -3,6 +3,7 @@ import {Auth, signInWithEmailAndPassword} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import firebase from "firebase/compat";
 import FirebaseError = firebase.FirebaseError;
+import {OnBoardingService} from "../on-boarding.service";
 
 @Component({
   selector: 'app-sign-in-page',
@@ -13,7 +14,7 @@ export class SignInPageComponent implements OnInit {
 
   credentials: SignInCredentials = new SignInCredentials();
 
-  constructor(private auth: Auth, private router: Router) {
+  constructor(private boarding: OnBoardingService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -21,11 +22,10 @@ export class SignInPageComponent implements OnInit {
 
   async handleSignIn() {
     try {
-      await signInWithEmailAndPassword(this.auth, this.credentials.email, this.credentials.password);
+      await this.boarding.signIn(this.credentials.email, this.credentials.password);
       this.router.navigate(['home']);
     } catch (e) {
-      let error = e as FirebaseError;
-      this.credentials.errorMessage = error.message;
+      this.credentials.errorMessage = e as string;
     }
   }
 }

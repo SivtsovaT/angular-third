@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import firebase from "firebase/compat";
 import FirebaseError = firebase.FirebaseError;
 import {doc, docData, Firestore, setDoc} from "@angular/fire/firestore";
+import {OnBoardingService} from "../on-boarding.service";
 
 @Component({
   selector: 'app-sign-up-page',
@@ -14,7 +15,7 @@ export class SignUpPageComponent implements OnInit {
 
   credentials: SignUpCredentials = new SignUpCredentials();
 
-  constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
+  constructor (private boarding: OnBoardingService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,19 +23,13 @@ export class SignUpPageComponent implements OnInit {
 
   async handleSignUp() {
     try {
-      const user = await createUserWithEmailAndPassword(this.auth,
-        this.credentials.email, this.credentials.password);
-      const userId = user.user.uid;
-      const documentReference = doc(this.firestore, 'profiles', userId);
-      await setDoc(documentReference, {
-        username: this.credentials.username,
-        birthday: this.credentials.birthday,
-        sex: this.credentials.sex
-      });
+      await this.boarding.signUp(this.credentials.email, this.credentials.password,
+       /* this.credentials.username,
+        this.credentials.birthday,
+        this.credentials.sex*/);
       this.router.navigate(['home']);
     } catch (e) {
-      let error = e as FirebaseError;
-      this.credentials.errorMessage = error.message;
+      this.credentials.errorMessage = e as string;
     }
   }
 
